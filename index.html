@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZScript – A Modern Transpiled Language</title>
+  <link rel="icon" href="favicon.png" />
+  <style>
+    :root {
+      --primary: #00c7b1; /* derived from logo */
+      --primary-dark: #00a896;
+      --bg: #0b1f1e;
+      --bg-soft: #102f2d;
+      --text: #e8fffb;
+      --muted: #9fe6dc;
+      --code-bg: #061716;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+      background: linear-gradient(180deg, var(--bg) 0%, #000 100%);
+      color: var(--text);
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    /* ---------------- TOP BAR ---------------- */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(11, 31, 30, 0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 90px 20px 60px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      line-height: 1.1;
+      margin: 0 0 20px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: #001b18;
+    }
+
+    .btn.primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn.secondary {
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .btn.secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* ---------------- CODE WINDOW ---------------- */
+
+    .code-window {
+      background: var(--code-bg);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, #0e2a28, #091e1d);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27c93f; }
+
+    pre {
+      margin: 0;
+      padding: 20px;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #e6fffb;
+      overflow-x: auto;
+    }
+
+    .kw { color: #7fffd4; }
+    .fn { color: #9cdcfe; }
+    .str { color: #ce9178; }
+    .cm { color: #6a9e96; }
+
+    /* ---------------- INSTALL ---------------- */
+
+    .install {
+      max-width: 900px;
+      margin: 80px auto 0;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .install h2 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .install p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .install-box {
+      background: var(--bg-soft);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .install-box strong {
+      color: var(--primary);
+    }
+
+    /* ---------------- ABOUT ---------------- */
+
+    .about {
+      max-width: 900px;
+      margin: 90px auto;
+      padding: 0 20px;
+    }
+
+    .about h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px 50px;
+      color: #6fbfb5;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="favicon.png" alt="ZScript logo" />
+      <span>ZScript</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#install">Download</a>
+      <a href="#docs">Docs</a>
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>A <span>modern</span> transpiled language<br/>with real control</h1>
+    <p>
+      ZScript is a clean, expressive programming language that transpiles to
+      JavaScript. It focuses on structured control flow, powerful execution
+      timing (<code>defer</code>, <code>queue</code>), and zero-cost abstractions
+      enabled by compile-time rewriting.
+    </p>
+
+    <div class="cta">
+      <a class="btn primary" href="#install">Install Now</a>
+      <a class="btn secondary" href="#docs">Read the Docs</a>
+    </div>
+  </div>
+
+  <div class="code-window">
+    <div class="code-header">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+    <pre><span class="kw">fn</span> <span class="fn">main</span>() {
+  <span class="kw">defer</span> print(<span class="str">"done"</span>);
+
+  print(<span class="str">"hello world"</span>);
+
+  <span class="cm">// structured cleanup, guaranteed</span>
+}
+</pre>
+  </div>
+</section>
+
+<section id="install" class="install">
+  <h2>Install ZScript</h2>
+  <p>Official installer (scripts coming soon).</p>
+
+  <div class="install-box">
+    <strong>Linux / macOS</strong>
+    <pre>curl -fsSL https://zscript.us.kg/install | bash</pre>
+  </div>
+
+  <div class="install-box">
+    <strong>Windows (PowerShell)</strong>
+    <pre>powershell -c "irm zscript.us.kg/install.ps1 | iex"</pre>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <h2>About ZScript</h2>
+  <p>
+    ZScript is designed to feel simple on the surface while enabling powerful
+    compile-time transformations underneath. Because it transpiles, ZScript
+    can safely introduce features that are difficult or impossible to express
+    in traditional runtime-only languages.
+  </p>
+  <p>
+    We are actively adding new keywords and language features such as
+    <code>queue</code>, a unified <code>loop</code> construct, and more structured
+    control-flow abstractions — all without sacrificing performance.
+  </p>
+</section>
+
+<footer>
+  © 2026 ZScript • Built with clarity and control
+</footer>
+
+</body>
+</html>
