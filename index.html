@@ -307,6 +307,33 @@
   </div>
 </section>
 
+<section id="zsc" class="about">
+  <h2>The zsc Toolchain</h2>
+  <p>
+    ZScript ships with <strong>zsc</strong>, a fast, cross-platform compiler and
+    runner built on top of <strong>Bun</strong>. You don’t need extra tooling or
+    complex setup — everything is included out of the box.
+  </p>
+  <p>
+    With <code>zsc</code>, you can compile your project ahead of time or compile
+    and run it instantly during development:
+  </p>
+  <pre>zsc build main.zs
+zsc run main.zs</pre>
+  <p>
+    Under the hood, <code>zsc</code> transpiles ZScript to modern JavaScript and
+    uses Bun’s high-performance runtime to execute it. You can even access the
+    full Bun CLI directly through ZScript:
+  </p>
+  <pre>zsc bun install
+zsc bun add antlr4</pre>
+  <p>
+    This tight integration gives ZScript native access to the JavaScript
+    ecosystem while keeping the language itself clean, structured, and focused
+    on correctness.
+  </p>
+</section>
+
 <section id="about" class="about">
   <h2>About ZScript</h2>
   <p>
