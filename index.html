@@ -30,40 +30,62 @@
 {
   "@context": "https://schema.org",
   "@graph": [
+
     {
       "@type": "ComputerLanguage",
-      "@id": "https://zscript.us.kg",
+      "@id": "https://zscript.us.kg/#language",
       "name": "ZScript",
       "alternateName": "zsc",
       "description": "A modern programming language featuring compile-time execution and strong typing.",
       "url": "https://zscript.us.kg",
       "programmingLanguage": "ZScript"
     },
+
     {
       "@type": "SoftwareApplication",
+      "@id": "https://zscript.us.kg/#compiler",
       "name": "ZScript Compiler",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Linux, macOS, Windows",
-      "downloadUrl": "https://zscript.us.kg",
+      "downloadUrl": "https://zscript.us.kg/",
       "softwareVersion": "0.5",
+
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       }
     },
+
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://zscript.us.kg/#zscript-app",
+      "name": "ZScript",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "All",
+      "url": "https://zscript.us.kg/",
+
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+
     {
       "@type": "SoftwareSourceCode",
       "name": "ZScript Source",
-      "programmingLanguage": { "@id": "https://zscript.us.kg" },
+      "programmingLanguage": {
+        "@id": "https://zscript.us.kg/#language"
+      },
       "runtimePlatform": ["Bun", "Node.js"],
       "codeRepository": "https://github.com/zscriptlang/zscript",
       "targetProduct": {
         "@type": "SoftwareApplication",
-        "name": "ZScript",
-        "operatingSystem": "All"
+        "@id": "https://zscript.us.kg/#zscript-app"
       }
     }
+
   ]
 }
 </script>
